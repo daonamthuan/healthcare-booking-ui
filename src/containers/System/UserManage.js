@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
-import { getAllUsers, createNewUserService } from "../../services/userService";
+import {
+    getAllUsers,
+    createNewUserService,
+    deleteUserService,
+} from "../../services/userService";
 import ModalUser from "./ModalUser";
+import { emitter } from "../../utils/emitter";
 
 class UserManage extends Component {
     // khi Component bắt đầu được render, việc đầu tiên nó làm là check Constructor đầu tiên
@@ -48,10 +53,27 @@ class UserManage extends Component {
             } else {
                 await this.getAllUsersFromReact();
                 this.setState({
-                    isOpenModalUser: !this.state.isOpenModalUser,
+                    isOpenModalUser: false,
                 });
+                // khi create thanh cong thi can xoa modal
+                // xoa bang cach se fire event toi component con de thong bao cho Component con biet
+                // Sau do, Component con se lap tuc nghe duoc su kien => cap nhat lai state la xong
+                emitter.emit("EVENT_CLEAR_MODAL_DATA");
             }
         } catch (err) {}
+    };
+
+    handleDeleteUser = async (user) => {
+        try {
+            let res = await deleteUserService(user.id);
+            if (res && res.errCode === 0) {
+                this.getAllUsersFromReact();
+            } else {
+                alert(res.errMessage);
+            }
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     /** Life cycle
@@ -59,6 +81,11 @@ class UserManage extends Component {
      * 1. Run Constructor -> init state
      * 2. Did mount (Set state) ~ born state ||  Un Mount ~ kill state
      * 3. Render
+     */
+
+    /**
+     * 1. Child muon thay doi state Parent => props
+     * 2. Parent muon thay doi state Child => Emitter
      */
     render() {
         let arrUsers = this.state.arrUsers;
@@ -105,7 +132,14 @@ class UserManage extends Component {
                                                 <button className="btn-edit">
                                                     <i className="fas fa-pencil-alt"></i>
                                                 </button>
-                                                <button className="btn-delete">
+                                                <button
+                                                    className="btn-delete"
+                                                    onClick={() => {
+                                                        this.handleDeleteUser(
+                                                            item
+                                                        );
+                                                    }}
+                                                >
                                                     <i className="fas fa-trash"></i>
                                                 </button>
                                             </td>
