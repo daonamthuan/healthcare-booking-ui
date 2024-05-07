@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import HomeHeader from "./HomeHeader";
 
-class Home extends Component {
+class HomePage extends Component {
     render() {
-        const { isLoggedIn } = this.props;
-        let linkToRedirect = isLoggedIn ? "/system/user-manage" : "/home";
-
-        return <Redirect to={linkToRedirect} />;
+        return (
+            <div>
+                <HomeHeader />
+            </div>
+        );
     }
 }
 
+// redux
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
@@ -21,4 +24,4 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
