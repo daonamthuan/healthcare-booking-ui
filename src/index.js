@@ -11,6 +11,9 @@ import { Provider } from "react-redux";
 import reduxStore, { persistor } from "./redux";
 
 // Khi chay cau lenh npm start thi file "index.js" se duoc chay truoc, sau do tu index no se render ra Component App
+
+// da import "reduxStore": noi luu tru cac thong tin cua redux
+// persistor: giúp lưu trữ 1 biến redux giống như 1 biến local storage
 const renderApp = () => {
     ReactDOM.render(
         <Provider store={reduxStore}>

@@ -50,6 +50,51 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+
+            .support {
+                padding-right: 50px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                i {
+                    font-size: 15px;
+                    margin-right: 5px;
+                }
+            }
+
+            .language-vi {
+                cursor: pointer;
+                opacity: 0.2;
+
+                &.active {
+                    opacity: 1;
+                    span {
+                        color: orange;
+                    }
+                }
+
+                &:hover {
+                    opacity: 0.88;
+                }
+            }
+
+            .language-en {
+                cursor: pointer;
+                margin: 0 10px;
+                opacity: 0.2;
+
+                &.active {
+                    opacity: 1;
+                    span {
+                        color: blue;
+                    }
+                }
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
         }
     }
 }
@@ -117,6 +162,7 @@
         display: flex;
         align-items: flex-end;
         justify-content: center;
+        padding-bottom: 10px;
         background-image: linear-gradient(
             rgba(255, 255, 255, 0.1),
             rgba(255, 255, 255, 0.9),
