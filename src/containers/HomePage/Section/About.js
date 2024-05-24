@@ -16,10 +16,10 @@ class About extends Component {
                             height="393px"
                             src="https://www.youtube.com/embed/JA_xgZ1wLn0"
                             title="Hướng dẫn đăng ký khám bệnh trực tuyến | UMC | Bệnh viện Đại học Y Dược TPHCM"
-                            frameborder="0"
+                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
                         ></iframe>
                     </div>
                     <div className="content-right">
