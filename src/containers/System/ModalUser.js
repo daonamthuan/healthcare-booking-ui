@@ -39,7 +39,7 @@ class ModalUser extends Component {
 
     handleOnChangeInput = (event, id) => {
         // BAD CODE
-        // event.target la doi tuong cua su
+        //event.target la doi tuong cua su kien
         // this.state[id] = event.target.value;
         // this.setState(
         //     {
@@ -167,7 +167,7 @@ class ModalUser extends Component {
                         }}
                     >
                         Add new
-                    </Button>{" "}
+                    </Button>
                     <Button
                         color="secondary"
                         onClick={() => {

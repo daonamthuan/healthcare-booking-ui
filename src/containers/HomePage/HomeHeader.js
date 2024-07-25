@@ -184,7 +184,7 @@ class HomeHeader extends Component {
 
 // redux
 const mapStateToProps = (state) => {
-    // map state cua redux, tiem no vao props react. (this.props)
+    // map state cua redux, inject no vao props react. (this.props)
     // tra ve props co 2 variable
     return {
         isLoggedIn: state.user.isLoggedIn,
