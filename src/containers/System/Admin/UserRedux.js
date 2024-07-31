@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-import { LANGUAGES, CRUD_ACTIONS } from "../../../utils";
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils";
 
 import * as actions from "../../../store/actions";
 import "./UserRedux.scss";
@@ -31,7 +31,7 @@ class UserRedux extends Component {
             gender: "",
             position: "",
             role: "",
-            avatar: "", // image URL
+            avatar: "", // base64 encoded string
 
             action: "",
             userEditId: "",
@@ -97,27 +97,30 @@ class UserRedux extends Component {
                 address: "",
                 gender:
                     arrGenders && arrGenders.length > 0
-                        ? arrGenders[0].key
+                        ? arrGenders[0].keyMap
                         : "",
                 position:
                     arrPositions && arrPositions.length > 0
-                        ? arrPositions[0].key
+                        ? arrPositions[0].keyMap
                         : "",
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : "",
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : "",
                 avatar: "",
                 action: CRUD_ACTIONS.CREATE,
+                previewImageURL: "",
             });
         }
     }
 
-    handleOnChangeImage = (event) => {
+    handleOnChangeImage = async (event) => {
         let data = event.target.files;
         let file = data[0];
-        let objectURL = URL.createObjectURL(file); // quang file vao de tao 1 duong link de xem anh
         if (file) {
+            let base64 = await CommonUtils.getBase64(file);
+            console.log("Check base 64 image: ", base64);
+            let objectURL = URL.createObjectURL(file); // quang file vao de tao 1 duong link de xem anh
             this.setState({
                 previewImageURL: objectURL,
-                avatar: file,
+                avatar: base64,
             });
         }
     };
@@ -128,7 +131,7 @@ class UserRedux extends Component {
     };
 
     onChangeInput = (event, id) => {
-        console.log("Event on change Input Target: ", event);
+        console.log("Event on change Input Target: ", event.target.value);
         let copyState = { ...this.state };
         this.setState({
             ...copyState,
@@ -137,11 +140,16 @@ class UserRedux extends Component {
     };
 
     handleSaveUser = () => {
+        console.log("Check state befor fire create action 1: ", this.state);
         let isValid = this.checkValidateInput();
         if (isValid) {
             let { action } = this.state;
-            if (action === CRUD_ACTIONS.action) {
+            if (action === CRUD_ACTIONS.CREATE) {
                 // fire action to Redux
+                console.log(
+                    "Check state befor fire create action 2: ",
+                    this.state
+                );
                 this.props.createNewUser({
                     email: this.state.email,
                     password: this.state.password,
@@ -152,6 +160,7 @@ class UserRedux extends Component {
                     gender: this.state.gender,
                     roleId: this.state.role,
                     positionId: this.state.position,
+                    avatar: this.state.avatar,
                 });
             }
 
@@ -168,7 +177,7 @@ class UserRedux extends Component {
                     gender: this.state.gender,
                     roleId: this.state.role,
                     positionId: this.state.position,
-                    // avatar: this.state.avatar
+                    avatar: this.state.avatar,
                 });
             }
         }
@@ -196,7 +205,11 @@ class UserRedux extends Component {
     };
 
     handleEditUserFromParent = (user) => {
-        console.log("Check handleEditUserFromParent: ", user);
+        let imageBase64 = "";
+        if (user.image) {
+            imageBase64 = new Buffer(user.image, "base64").toString("binary");
+        }
+        console.log("Check user: ", user);
         this.setState({
             email: user.email,
             password: "HARDCODE",
@@ -207,7 +220,8 @@ class UserRedux extends Component {
             gender: user.gender,
             position: user.positionId,
             role: user.roleId,
-            avatar: user.avatar,
+            avatar: "",
+            previewImageURL: imageBase64,
             action: CRUD_ACTIONS.EDIT,
             userEditId: user.id,
         });
@@ -351,7 +365,7 @@ class UserRedux extends Component {
                                             return (
                                                 <option
                                                     key={index}
-                                                    value={item.key}
+                                                    value={item.keyMap}
                                                 >
                                                     {language === LANGUAGES.VI
                                                         ? item.valueVi
@@ -378,7 +392,7 @@ class UserRedux extends Component {
                                             return (
                                                 <option
                                                     key={index}
-                                                    value={item.key}
+                                                    value={item.keyMap}
                                                 >
                                                     {language == LANGUAGES.VI
                                                         ? item.valueVi
@@ -405,7 +419,7 @@ class UserRedux extends Component {
                                             return (
                                                 <option
                                                     key={index}
-                                                    value={item.key}
+                                                    value={item.keyMap}
                                                 >
                                                     {language == LANGUAGES.VI
                                                         ? item.valueVi
