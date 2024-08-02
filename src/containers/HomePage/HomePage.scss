@@ -43,10 +43,12 @@
         }
 
         .section-customize {
+            cursor: pointer;
+
             .customize-border {
                 border: 1px solid orange;
                 padding: 10px 5px;
-                margin: 10px;
+                margin: 5px;
             }
         }
     }

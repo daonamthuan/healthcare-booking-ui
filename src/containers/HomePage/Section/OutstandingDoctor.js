@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
 import { FormattedMessage } from "react-intl";
+import { withRouter } from "react-router";
 
 class OutstandingDoctor extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class OutstandingDoctor extends Component {
             arrDoctors: [],
         };
     }
+
     componentDidMount() {
         this.props.loadTopDoctors();
     }
@@ -23,6 +25,11 @@ class OutstandingDoctor extends Component {
             });
         }
     }
+
+    handleViewDetailDoctor = (doctor) => {
+        console.log("Click doctor: ", doctor);
+        this.props.history.push(`/detail-doctor/${doctor.id}`);
+    };
 
     render() {
         let { arrDoctors } = this.state;
@@ -58,6 +65,11 @@ class OutstandingDoctor extends Component {
                                         <div
                                             className="section-customize"
                                             key={index}
+                                            onClick={() =>
+                                                this.handleViewDetailDoctor(
+                                                    item
+                                                )
+                                            }
                                         >
                                             <div className="customize-border">
                                                 <div className="outer-bg">
@@ -104,4 +116,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor)
+);
