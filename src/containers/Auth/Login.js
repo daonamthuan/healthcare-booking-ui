@@ -30,6 +30,13 @@ class Login extends Component {
         });
     };
 
+    handleKeyDown = (event) => {
+        console.log("Check key down event: ", event);
+        if (event.keyCode === 13) {
+            this.handleLogin();
+        }
+    };
+
     handleLogin = async () => {
         this.setState({
             errMessage: "",
@@ -103,6 +110,9 @@ class Login extends Component {
                                     onChange={(event) => {
                                         this.handleOnChangePassword(event);
                                     }}
+                                    onKeyDown={(event) =>
+                                        this.handleKeyDown(event)
+                                    }
                                 />
                                 <span
                                     onClick={() => {

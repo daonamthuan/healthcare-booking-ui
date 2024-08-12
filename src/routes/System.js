@@ -28,6 +28,10 @@ class System extends Component {
                                 component={ManageDoctor}
                             />
                             <Route
+                                path="/doctor/manage-schedule"
+                                component={ManageDoctor}
+                            />
+                            <Route
                                 component={() => {
                                     return <Redirect to={systemMenuPath} />;
                                 }}

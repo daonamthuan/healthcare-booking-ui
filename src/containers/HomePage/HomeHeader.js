@@ -5,13 +5,19 @@ import "./HomeHeader.scss";
 import { FormattedMessage } from "react-intl";
 import { Form } from "reactstrap";
 import { LANGUAGES } from "../../utils";
-
+import { withRouter } from "react-router";
 import { changeLanguageApp } from "../../store/actions/appActions";
 
 class HomeHeader extends Component {
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language);
         // FIRE REDUX ACTIONS(EVENT)
+    };
+
+    returnToHome = () => {
+        if (this.props.history) {
+            this.props.history.push(`/home`);
+        }
     };
 
     render() {
@@ -22,7 +28,12 @@ class HomeHeader extends Component {
                     <div className="home-header-content">
                         <div className="left-content">
                             <i className="fas fa-bars"></i>
-                            <div className="header-logo"></div>
+                            <div
+                                className="header-logo"
+                                onClick={() => {
+                                    this.returnToHome();
+                                }}
+                            ></div>
                         </div>
                         <div className="center-content">
                             <div className="child-content">
@@ -205,4 +216,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 // connect o day la connect giua thang react voi redux, de component co the dung duoc state cua redux
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(HomeHeader)
+);
