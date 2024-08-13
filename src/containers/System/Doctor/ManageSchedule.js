@@ -10,6 +10,7 @@ import moment from "moment";
 import { range } from "lodash";
 import { toast } from "react-toastify";
 import _ from "lodash";
+import { saveBulkScheduleDoctor } from "../../../services/userService";
 
 class ManageSchedule extends Component {
     constructor(props) {
@@ -104,22 +105,23 @@ class ManageSchedule extends Component {
         }
     };
 
-    handleSaveSchedule = () => {
+    handleSaveSchedule = async () => {
         let { rangeTime, selectedDoctor, currentDate } = this.state;
         let result = [];
 
         if (selectedDoctor && _.isEmpty(selectedDoctor)) {
             toast.error("Invalid selected doctor!");
             return;
-        }
-        if (!currentDate) {
+        } else if (!currentDate) {
             toast.error("Invalid date");
             return;
         }
 
-        let formatedDate = moment(currentDate).format(
-            dateFormat.SEND_TO_SERVER
-        );
+        // let formatedDate = moment(currentDate).format(
+        //     dateFormat.SEND_TO_SERVER
+        // );
+        // let formatedDate = moment(currentDate).unix();
+        let formatedDate = new Date(currentDate).getTime();
 
         if (rangeTime && rangeTime.length > 0) {
             let selectedTime = rangeTime.filter(
@@ -130,13 +132,20 @@ class ManageSchedule extends Component {
                     let obj = {};
                     obj.doctorId = selectedDoctor.value;
                     obj.date = formatedDate;
-                    obj.time = item.keyMap;
+                    obj.timeType = item.keyMap;
                     result.push(obj);
                 });
             }
 
             console.log("Check result arr: ", result);
         }
+
+        let res = await saveBulkScheduleDoctor({
+            arrSchedule: result,
+            doctorId: selectedDoctor.value,
+            formatedDate: formatedDate,
+        });
+        console.log("Check respones when bulk creating schedule: ", res);
     };
 
     render() {
