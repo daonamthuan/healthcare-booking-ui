@@ -1,9 +1,9 @@
 {
     "homeheader": {
-        "speciality": "Medical specialty",
+        "specialty": "Medical specialty",
         "searchdoctor": "Find a doctor by specialty",
         "health-facility": "Health facilities",
-        "select-room": "Chọn hospital/clinic",
+        "select-room": "Choose hospital/clinic",
         "doctor": "Doctor",
         "select-doctor": "Choose a good doctor",
         "fee": "Medical service",
@@ -55,7 +55,7 @@
         "edit": "Save changes"
     },
     "homepage": {
-        "outstanding-doctor": "Lastweek's featured doctor",
+        "outstanding-doctor": "Lastweek featured doctor",
         "more-info": "More info"
     },
 
@@ -64,5 +64,13 @@
         "choose-doctor": "Choose doctor",
         "choose-date": "Choose date",
         "save": "Save"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Schedules",
+            "no-schedule": "The doctor does not have a schedule in this time. Please choose another day!",
+            "choose": "Choose ",
+            "book-free": " and book an appointment free!"
+        }
     }
 }

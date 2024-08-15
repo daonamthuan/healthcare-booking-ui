@@ -112,6 +112,7 @@ class UserManage extends Component {
     /** Life cycle
      * When render Component:
      * 1. Run Constructor -> init state
+     * 1*. Render
      * 2. Did mount (Set state) ~ born state ||  Un Mount ~ kill state
      * 3. Render
      */

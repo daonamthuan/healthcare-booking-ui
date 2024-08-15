@@ -1,24 +1,24 @@
 {
     "homeheader": {
-        "speciality": "Chuyên khoa",
+        "specialty": "Chuyên khoa",
         "searchdoctor": "Tìm bác sĩ theo chuyên khoa",
         "health-facility": "Cơ sở y tế",
         "select-room": "Chọn phòng khám",
         "doctor": "Bác sĩ",
         "select-doctor": "Chọn bác sĩ",
         "fee": "Gói khám",
-        "check-health": "Khám sức khỏe tổng quát",
+        "check-health": "Khám sức khoẻ tổng quát",
         "support": "Hỗ trợ",
         "welcome": "Xin chào"
     },
     "banner": {
         "title1": "NỀN TẢNG Y TẾ",
-        "title2": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
+        "title2": "CHĂM SÓC SỨC KHOẺ TOÀN DIỆN",
         "child1": "Khám chuyên khoa",
         "child2": "Khám từ xa",
         "child3": "Khám tổng quát",
         "child4": "Xét nghiệm y học",
-        "child5": "Sức khỏe tinh thần",
+        "child5": "Sức khoẻ tinh thần",
         "child6": "Khám nha khoa"
     },
 
@@ -37,8 +37,8 @@
         "unknown-error": "Có lỗi xảy ra",
         "internal-server-error": "Lỗi kết nối",
         "bad-request": "Yêu cầu không hợp lệ",
-        "forbiden-request": "Thông tin truyền vào không hợp lệ",
-        "fail-to-load-all-code": "Không thể tải về dữ liệu allcode",
+        "forbidden-request": "Thông tin truyền vào không hợp lệ",
+        "fail-to-load-all-code": "Không thể tải về dữ liệu \"tất cả mã\"",
         "sum": "Tổng",
         "date-range-invalid": "Khoảng thời gian không hợp lệ"
     },
@@ -46,7 +46,7 @@
         "login": "Đăng nhập",
         "username": "Tên đăng nhập",
         "password": "Mật khẩu",
-        "userpass-wrong": "Sai tên đăng nhập hoặc mật khẩu!"
+        "user-password-wrong": "Sai tên đăng nhập hoặc mật khẩu!"
     },
     "menu": {
         "admin": {
@@ -91,5 +91,13 @@
         "choose-doctor": "Chọn bác sĩ",
         "choose-date": "Chọn ngày khám",
         "save": "Lưu thông tin"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Lịch khám",
+            "no-schedule": "Bác sĩ chưa có lịch khám bệnh trong khoảng thời gian này. Vui lòng chọn thời gian khác!",
+            "choose": "Chọn ",
+            "book-free": " và đặt lịch hẹn miễn phí!"
+        }
     }
 }

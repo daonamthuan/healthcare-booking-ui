@@ -39,7 +39,7 @@ class HomeHeader extends Component {
                             <div className="child-content">
                                 <div>
                                     <b>
-                                        <FormattedMessage id="homeheader.speciality" />
+                                        <FormattedMessage id="homeheader.specialty" />
                                     </b>
                                 </div>
                                 <div className="subs-title">

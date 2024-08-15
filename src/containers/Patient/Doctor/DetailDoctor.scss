@@ -3,7 +3,7 @@
 
     .intro-doctor {
         display: flex;
-        margin: 10px 100px;
+        margin: 10px 100px 0 100px;
 
         .content-left {
             width: 20%;
@@ -33,6 +33,20 @@
         }
     }
 
+    .schedule-doctor {
+        margin: 0 100px;
+        display: flex;
+        padding-bottom: 20px;
+        min-height: 200px;
+
+        .content-left {
+            width: 50%;
+        }
+
+        .content-right {
+            width: 50%;
+        }
+    }
     .detail-infor-doctor {
         background: rgb(249, 249, 249);
         padding: 20px 100px;

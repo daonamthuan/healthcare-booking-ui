@@ -117,11 +117,11 @@ class ManageSchedule extends Component {
             return;
         }
 
-        // let formatedDate = moment(currentDate).format(
+        // let formattedDate = moment(currentDate).format(
         //     dateFormat.SEND_TO_SERVER
         // );
-        // let formatedDate = moment(currentDate).unix();
-        let formatedDate = new Date(currentDate).getTime();
+        // let formattedDate = moment(currentDate).unix();
+        let formattedDate = new Date(currentDate).getTime();
 
         if (rangeTime && rangeTime.length > 0) {
             let selectedTime = rangeTime.filter(
@@ -131,7 +131,7 @@ class ManageSchedule extends Component {
                 selectedTime.map((item) => {
                     let obj = {};
                     obj.doctorId = selectedDoctor.value;
-                    obj.date = formatedDate;
+                    obj.date = formattedDate;
                     obj.timeType = item.keyMap;
                     result.push(obj);
                 });
@@ -143,9 +143,14 @@ class ManageSchedule extends Component {
         let res = await saveBulkScheduleDoctor({
             arrSchedule: result,
             doctorId: selectedDoctor.value,
-            formatedDate: formatedDate,
+            formattedDate: "" + formattedDate,
         });
-        console.log("Check respones when bulk creating schedule: ", res);
+        if (res && res.errCode === 0) {
+            toast.success("Saving doctor's schedule successfully!");
+        } else {
+            toast.error("Error when saving doctor's schedule");
+            console.log("Error when saving doctor's schedule: ", res);
+        }
     };
 
     render() {
@@ -153,6 +158,7 @@ class ManageSchedule extends Component {
         // console.log("Check props from manage schedule: ", this.props);
         let { rangeTime } = this.state;
         let { language } = this.props;
+        let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
         // console.log("Check state from manage schedule: ", rangeTime);
         return (
             <div className="manage-schedule-container">
@@ -181,7 +187,7 @@ class ManageSchedule extends Component {
                                 }}
                                 className="form-control"
                                 value={this.state.currentDate}
-                                minDate={new Date()}
+                                minDate={yesterday}
                             />
                         </div>
                         <div className="col-12 pick-hour-container">
