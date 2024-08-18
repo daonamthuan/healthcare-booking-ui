@@ -11,6 +11,7 @@
         "support": "Hỗ trợ",
         "welcome": "Xin chào"
     },
+
     "banner": {
         "title1": "NỀN TẢNG Y TẾ",
         "title2": "CHĂM SÓC SỨC KHOẺ TOÀN DIỆN",
@@ -42,12 +43,14 @@
         "sum": "Tổng",
         "date-range-invalid": "Khoảng thời gian không hợp lệ"
     },
+
     "login": {
         "login": "Đăng nhập",
         "username": "Tên đăng nhập",
         "password": "Mật khẩu",
         "user-password-wrong": "Sai tên đăng nhập hoặc mật khẩu!"
     },
+
     "menu": {
         "admin": {
             "manage-user": "Quản lý người dùng",
@@ -66,6 +69,7 @@
             "manage-schedule": "Quàn lý lịch khám bệnh"
         }
     },
+
     "manage-user": {
         "add": "Thêm mới người dùng",
         "email": "Email",
@@ -81,6 +85,7 @@
         "save": "Thêm người dùng",
         "edit": "Lưu thay đổi"
     },
+
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
         "more-info": "Xem thêm"
@@ -92,12 +97,41 @@
         "choose-date": "Chọn ngày khám",
         "save": "Lưu thông tin"
     },
+
     "patient": {
         "detail-doctor": {
             "schedule": "Lịch khám",
             "no-schedule": "Bác sĩ chưa có lịch khám bệnh trong khoảng thời gian này. Vui lòng chọn thời gian khác!",
             "choose": "Chọn ",
             "book-free": " và đặt lịch hẹn miễn phí!"
+        },
+
+        "extra-infor-doctor": {
+            "text-address": "Địa chỉ khám",
+            "price": "Giá khám:",
+            "detail": "Xem chi tiết",
+            "payment": "Người bệnh có thể thanh toán bằng phương thức: ",
+            "hide-price": "Ẩn bảng giá"
+        }
+    },
+
+    "admin": {
+        "manage-doctor": {
+            "title": "QUẢN LÝ THÔNG TIN BÁC SĨ",
+            "select-doctor": "Chọn bác sĩ",
+            "intro": "Thông tin giới thiệu",
+            "add": "Thêm thông tin",
+            "save": "Lưu thay đổi",
+            "price": "Giá khám bệnh",
+            "payment": "Phương thức thanh toán",
+            "province": "Tỉnh thành",
+            "nameClinic": "Tên phòng khám",
+            "addressClinic": "Địa chỉ phòng khám",
+            "note": "Ghi chú",
+            "chooseDoctor": "Chọn bác sĩ",
+            "choosePrice": "Chọn mức giá khám bệnh",
+            "choosePayment": "Chọn phương thức thanh toán",
+            "chooseProvince": "Chọn tỉnh thành"
         }
     }
 }

@@ -7,7 +7,7 @@ import {
     editUserService,
     getTopDoctorHomeService,
     getAllDoctors,
-    saveDetailDoctor,
+    saveDetailDoctorService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -253,10 +253,10 @@ export const fetchAllDoctors = () => {
     };
 };
 
-export const saveDetailInforDoctor = (data) => {
+export const saveDetailDoctor = (data) => {
     return async (dispatch, getState) => {
         try {
-            let res = await saveDetailDoctor(data);
+            let res = await saveDetailDoctorService(data);
             if (res && res.errCode === 0) {
                 toast.success("Save doctor infor successfully !");
                 dispatch({
@@ -300,3 +300,43 @@ export const fetchAllScheduleTime = () => {
         }
     };
 };
+
+export const getRequiredDoctorInfor = () => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({ type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_START }); // de fire 1 actions bat dung phai dung tu khoa dispatch de gui qua Reducer xu ly
+            let resPrice = await getAllCodeService("PRICE");
+            let resPayment = await getAllCodeService("PAYMENT");
+            let resProvince = await getAllCodeService("PROVINCE");
+            if (
+                resPrice &&
+                resPrice.errCode === 0 &&
+                resPayment &&
+                resPayment.errCode === 0 &&
+                resProvince &&
+                resProvince.errCode === 0
+            ) {
+                let data = {
+                    resPrice: resPrice.data,
+                    resPayment: resPayment.data,
+                    resProvince: resProvince.data,
+                };
+                dispatch(fetchRequiredDoctorInforSuccess(data)); // de fire 1 actions bat dung phai dung tu khoa dispatch
+            } else {
+                dispatch(fetchRequiredDoctorInforFailed());
+            }
+        } catch (err) {
+            dispatch(fetchRequiredDoctorInforFailed());
+            console.log("fetch required doctor info failed error: ", err);
+        }
+    };
+};
+
+export const fetchRequiredDoctorInforSuccess = (allRequiredData) => ({
+    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_SUCCESS,
+    data: allRequiredData,
+});
+
+export const fetchRequiredDoctorInforFailed = () => ({
+    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFO_FAILED,
+});

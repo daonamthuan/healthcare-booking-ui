@@ -5,7 +5,7 @@ import "./DetailDoctor.scss";
 import { getDetailInforDoctor } from "../../../services/userService";
 import { LANGUAGES } from "../../../utils";
 import DoctorSchedule from "./DoctorSchedule";
-import { curryRight } from "lodash";
+import DoctorExtraInfor from "./DoctorExtraInfor";
 
 class DetailDoctor extends Component {
     constructor(props) {
@@ -18,11 +18,7 @@ class DetailDoctor extends Component {
 
     async componentDidMount() {
         console.log("Props in Detail doctor: ", this.props);
-        if (
-            this.props.match &&
-            this.props.match.params &&
-            this.props.match.params.id
-        ) {
+        if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id;
             this.setState({ currentDoctorId: id });
             let res = await getDetailInforDoctor(id);
@@ -52,34 +48,28 @@ class DetailDoctor extends Component {
                             className="content-left"
                             style={{
                                 backgroundImage: `url(${
-                                    detailDoctor && detailDoctor.image
-                                        ? detailDoctor.image
-                                        : ""
+                                    detailDoctor && detailDoctor.image ? detailDoctor.image : ""
                                 })`,
                             }}
                         ></div>
                         <div className="content-right">
-                            <div className="up">
-                                {language === LANGUAGES.VI ? nameVi : nameEn}
-                            </div>
+                            <div className="up">{language === LANGUAGES.VI ? nameVi : nameEn}</div>
                             <div className="down">
                                 {detailDoctor &&
                                     detailDoctor.Markdown &&
                                     detailDoctor.Markdown.description && (
-                                        <span>
-                                            {detailDoctor.Markdown.description}
-                                        </span>
+                                        <span>{detailDoctor.Markdown.description}</span>
                                     )}
                             </div>
                         </div>
                     </div>
                     <div className="schedule-doctor">
                         <div className="content-left">
-                            <DoctorSchedule
-                                doctorIdFromParent={this.state.currentDoctorId}
-                            />
+                            <DoctorSchedule doctorIdFromParent={this.state.currentDoctorId} />
                         </div>
-                        <div className="content-right"></div>
+                        <div className="content-right">
+                            <DoctorExtraInfor doctorIdFromParent={this.state.currentDoctorId} />
+                        </div>
                     </div>
                     <div className="detail-infor-doctor">
                         {detailDoctor &&
@@ -87,8 +77,7 @@ class DetailDoctor extends Component {
                             detailDoctor.Markdown.contentHTML && (
                                 <div
                                     dangerouslySetInnerHTML={{
-                                        __html: detailDoctor.Markdown
-                                            .contentHTML,
+                                        __html: detailDoctor.Markdown.contentHTML,
                                     }}
                                 ></div>
                             )}

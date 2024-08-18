@@ -40,7 +40,7 @@ const getAllDoctors = () => {
     return axios.get(`/api/get-all-doctors`);
 };
 
-const saveDetailDoctor = (data) => {
+const saveDetailDoctorService = (data) => {
     return axios.post("/api/save-infor-doctors", data);
 };
 
@@ -53,9 +53,11 @@ const saveBulkScheduleDoctor = (data) => {
 };
 
 const getScheduleDoctorByDate = (doctorId, date) => {
-    return axios.get(
-        `/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`
-    );
+    return axios.get(`/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`);
+};
+
+const getExtraInforDoctorById = (doctorId) => {
+    return axios.get(`/api/get-extra-infor-doctor-by-id?doctorId=${doctorId}`);
 };
 
 export {
@@ -67,8 +69,9 @@ export {
     getAllCodeService,
     getTopDoctorHomeService,
     getAllDoctors,
-    saveDetailDoctor,
+    saveDetailDoctorService,
     getDetailInforDoctor,
     saveBulkScheduleDoctor,
     getScheduleDoctorByDate,
+    getExtraInforDoctorById,
 };

@@ -11,6 +11,7 @@
         "support": "Support",
         "welcome": "Welcome"
     },
+
     "banner": {
         "title1": "MEDICAL PLATFORM",
         "title2": "COMPREHENSIVE HEALTH CARE",
@@ -21,6 +22,7 @@
         "child5": "Mental health",
         "child6": "Dental examination"
     },
+
     "menu": {
         "admin": {
             "manage-user": "Manage user",
@@ -39,6 +41,7 @@
             "manage-schedule": "Manage doctor's schedule"
         }
     },
+
     "manage-user": {
         "add": "Add a new user",
         "email": "Email",
@@ -54,6 +57,7 @@
         "save": "Save user",
         "edit": "Save changes"
     },
+
     "homepage": {
         "outstanding-doctor": "Lastweek featured doctor",
         "more-info": "More info"
@@ -65,12 +69,41 @@
         "choose-date": "Choose date",
         "save": "Save"
     },
+
     "patient": {
         "detail-doctor": {
             "schedule": "Schedules",
             "no-schedule": "The doctor does not have a schedule in this time. Please choose another day!",
             "choose": "Choose ",
             "book-free": " and book an appointment free!"
+        },
+
+        "extra-infor-doctor": {
+            "text-address": "Examination's address",
+            "price": "Price:",
+            "detail": "Show details",
+            "payment": "The patient can pay by method: ",
+            "hide-price": "Hide price list"
+        }
+    },
+
+    "admin": {
+        "manage-doctor": {
+            "title": "MANAGE DOCTOR'S INFORMATION",
+            "select-doctor": "Select doctor",
+            "intro": "Doctor description",
+            "add": "Add info",
+            "save": "Save changes",
+            "price": "Price",
+            "payment": "Payment method",
+            "province": "City/Province",
+            "nameClinic": "Clinic's name",
+            "addressClinic": "Clinic's address",
+            "note": "Note",
+            "chooseDoctor": "Choose a doctor",
+            "choosePrice": "Choose a price",
+            "choosePayment": "Choose payment method",
+            "chooseProvince": "Choose city/province"
         }
     }
 }
