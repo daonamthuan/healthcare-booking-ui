@@ -75,7 +75,7 @@
             "schedule": "Schedules",
             "no-schedule": "The doctor does not have a schedule in this time. Please choose another day!",
             "choose": "Choose ",
-            "book-free": " and book an appointment free!"
+            "book-free": " and book an appointment for free!"
         },
 
         "extra-infor-doctor": {
@@ -84,6 +84,21 @@
             "detail": "Show details",
             "payment": "The patient can pay by method: ",
             "hide-price": "Hide price list"
+        },
+
+        "booking-modal": {
+            "title": "Booking medical appointment information",
+            "fullName": "Full name",
+            "phoneNumber": "Phone number",
+            "email": "Email",
+            "address": "Address",
+            "reason": "Reason for the medical examination",
+            "birthday": "Day of birth",
+            "gender": "Gender",
+            "confirm": "Confirm",
+            "cancel": "Cancel",
+            "freeBooking": "Book an appointment for free!",
+            "price": "Price: "
         }
     },
 
