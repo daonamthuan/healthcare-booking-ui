@@ -6,10 +6,7 @@ import { history } from "../redux";
 import { ToastContainer } from "react-toastify";
 import CustomScrollbars from "../components/CustomScrollbars.js";
 
-import {
-    userIsAuthenticated,
-    userIsNotAuthenticated,
-} from "../hoc/authentication";
+import { userIsAuthenticated, userIsNotAuthenticated } from "../hoc/authentication";
 
 import { path } from "../utils";
 import Home from "../routes/Home";
@@ -19,6 +16,7 @@ import { CustomToastCloseButton } from "../components/CustomToast";
 import HomePage from "./HomePage/HomePage.js";
 import DetailDoctor from "./Patient/Doctor/DetailDoctor.js";
 import Doctor from "../routes/Doctor.js";
+import VerifyEmail from "./Patient/VerifyEmail.js";
 
 class App extends Component {
     handlePersistorState = () => {
@@ -45,36 +43,26 @@ class App extends Component {
                 <Router history={history}>
                     <div className="main-container">
                         <div className="content-container">
-                            <CustomScrollbars
-                                style={{ height: "100vh", width: "100%" }}
-                            >
+                            <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
                                 <Switch>
-                                    <Route
-                                        path={path.HOME}
-                                        exact
-                                        component={Home}
-                                    />
+                                    <Route path={path.HOME} exact component={Home} />
                                     <Route
                                         path={path.LOGIN}
-                                        component={userIsNotAuthenticated(
-                                            Login
-                                        )}
+                                        component={userIsNotAuthenticated(Login)}
                                     />
                                     <Route
                                         path={path.SYSTEM}
                                         component={userIsAuthenticated(System)}
                                     />
-                                    <Route
-                                        path={path.HOMEPAGE}
-                                        component={HomePage}
-                                    />
+                                    <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route
                                         path={"/doctor"}
                                         component={userIsAuthenticated(Doctor)}
                                     />
+                                    <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
                                     <Route
-                                        path={path.DETAIL_DOCTOR}
-                                        component={DetailDoctor}
+                                        path={path.VERIFY_EMAIL_BOOKING}
+                                        component={VerifyEmail}
                                     />
                                 </Switch>
                             </CustomScrollbars>

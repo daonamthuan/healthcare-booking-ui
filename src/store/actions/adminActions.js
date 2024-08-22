@@ -94,7 +94,6 @@ export const fetchRoleFailed = () => ({
 export const createNewUser = (data) => {
     return async (dispatch, getState) => {
         try {
-            console.log("Check data before save: ", data);
             let res = await createNewUserService(data);
             if (res && res.errCode == 0) {
                 toast.success("Create a new user successfully!");
@@ -210,7 +209,6 @@ export const fetchTopDoctor = () => {
             let res = await getTopDoctorHomeService(10);
             if (res && res.errCode === 0) {
                 dispatch(fetchTopDoctorSuccess(res.data));
-                console.log("Check after fire actions: ", res);
             } else {
                 dispatch(fetchTopDoctorFailed());
             }

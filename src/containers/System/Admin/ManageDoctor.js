@@ -322,7 +322,7 @@ class ManageDoctor extends Component {
                                 this.handleOnChangeText(event, "addressClinic");
                             }}
                             value={this.state.addressClinic}
-                        />{" "}
+                        />
                     </div>
                     <div className="col-4 form-group">
                         <label>

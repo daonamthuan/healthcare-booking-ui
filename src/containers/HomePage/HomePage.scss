@@ -71,7 +71,7 @@
                 background-color: #eee;
 
                 &.section-specialty {
-                    background-image: url("../../assets/specialty/carousel-img.jpg");
+                    // background-image: url("../../assets/specialty/co-xuong-khop.jpg");
                 }
 
                 &.section-medical-facility {
@@ -92,7 +92,13 @@
 
             .section-customize-description {
                 display: block;
-                padding: 0 22px;
+                padding: 5px 15px 0 15px;
+                font-size: 15px;
+                font-weight: 500;
+
+                &:hover {
+                    color: #45c3d2;
+                }
             }
         }
     }

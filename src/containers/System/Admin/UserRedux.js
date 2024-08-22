@@ -60,20 +60,14 @@ class UserRedux extends Component {
             let arrGenders = this.props.genderRedux;
             this.setState({
                 genderArr: arrGenders,
-                gender:
-                    arrGenders && arrGenders.length > 0
-                        ? arrGenders[0].key
-                        : "",
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : "",
             });
         }
         if (prevProps.positionRedux !== this.props.positionRedux) {
             let arrPositions = this.props.positionRedux;
             this.setState({
                 positionArr: arrPositions,
-                position:
-                    arrPositions && arrPositions.length > 0
-                        ? arrPositions[0].key
-                        : "",
+                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : "",
             });
         }
         if (prevProps.roleRedux !== this.props.roleRedux) {
@@ -95,14 +89,8 @@ class UserRedux extends Component {
                 lastName: "",
                 phoneNumber: "",
                 address: "",
-                gender:
-                    arrGenders && arrGenders.length > 0
-                        ? arrGenders[0].keyMap
-                        : "",
-                position:
-                    arrPositions && arrPositions.length > 0
-                        ? arrPositions[0].keyMap
-                        : "",
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : "",
+                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : "",
                 role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : "",
                 avatar: "",
                 action: CRUD_ACTIONS.CREATE,
@@ -115,8 +103,7 @@ class UserRedux extends Component {
         let data = event.target.files;
         let file = data[0];
         if (file) {
-            let base64 = await CommonUtils.getBase64(file);
-            console.log("Check base 64 image: ", base64);
+            let base64 = await CommonUtils.getBase64(file); // encode image
             let objectURL = URL.createObjectURL(file); // quang file vao de tao 1 duong link de xem anh
             this.setState({
                 previewImageURL: objectURL,
@@ -140,16 +127,11 @@ class UserRedux extends Component {
     };
 
     handleSaveUser = () => {
-        console.log("Check state befor fire create action 1: ", this.state);
         let isValid = this.checkValidateInput();
         if (isValid) {
             let { action } = this.state;
             if (action === CRUD_ACTIONS.CREATE) {
                 // fire action to Redux
-                console.log(
-                    "Check state befor fire create action 2: ",
-                    this.state
-                );
                 this.props.createNewUser({
                     email: this.state.email,
                     password: this.state.password,
@@ -185,14 +167,7 @@ class UserRedux extends Component {
 
     checkValidateInput = () => {
         let isValid = true;
-        let arrCheck = [
-            "email",
-            "password",
-            "firstName",
-            "lastName",
-            "phoneNumber",
-            "address",
-        ];
+        let arrCheck = ["email", "password", "firstName", "lastName", "phoneNumber", "address"];
         for (let i = 0; i < arrCheck.length; i++) {
             if (!this.state[arrCheck[i]]) {
                 isValid = false;
@@ -269,9 +244,7 @@ class UserRedux extends Component {
                                         this.onChangeInput(event, "email");
                                     }}
                                     disabled={
-                                        this.state.action === CRUD_ACTIONS.EDIT
-                                            ? true
-                                            : false
+                                        this.state.action === CRUD_ACTIONS.EDIT ? true : false
                                     }
                                 />
                             </div>
@@ -287,9 +260,7 @@ class UserRedux extends Component {
                                         this.onChangeInput(event, "password");
                                     }}
                                     disabled={
-                                        this.state.action === CRUD_ACTIONS.EDIT
-                                            ? true
-                                            : false
+                                        this.state.action === CRUD_ACTIONS.EDIT ? true : false
                                     }
                                 />
                             </div>
@@ -328,10 +299,7 @@ class UserRedux extends Component {
                                     type="text"
                                     value={phoneNumber}
                                     onChange={(event) => {
-                                        this.onChangeInput(
-                                            event,
-                                            "phoneNumber"
-                                        );
+                                        this.onChangeInput(event, "phoneNumber");
                                     }}
                                 />
                             </div>
@@ -363,10 +331,7 @@ class UserRedux extends Component {
                                         genders.length > 0 &&
                                         genders.map((item, index) => {
                                             return (
-                                                <option
-                                                    key={index}
-                                                    value={item.keyMap}
-                                                >
+                                                <option key={index} value={item.keyMap}>
                                                     {language === LANGUAGES.VI
                                                         ? item.valueVi
                                                         : item.valueEn}
@@ -390,10 +355,7 @@ class UserRedux extends Component {
                                         positions.length > 0 &&
                                         positions.map((item, index) => {
                                             return (
-                                                <option
-                                                    key={index}
-                                                    value={item.keyMap}
-                                                >
+                                                <option key={index} value={item.keyMap}>
                                                     {language == LANGUAGES.VI
                                                         ? item.valueVi
                                                         : item.valueEn}
@@ -417,10 +379,7 @@ class UserRedux extends Component {
                                         roles.length > 0 &&
                                         roles.map((item, index) => {
                                             return (
-                                                <option
-                                                    key={index}
-                                                    value={item.keyMap}
-                                                >
+                                                <option key={index} value={item.keyMap}>
                                                     {language == LANGUAGES.VI
                                                         ? item.valueVi
                                                         : item.valueEn}
@@ -442,10 +401,7 @@ class UserRedux extends Component {
                                             this.handleOnChangeImage(event);
                                         }}
                                     />
-                                    <label
-                                        htmlFor="previewImg"
-                                        className="label-upload"
-                                    >
+                                    <label htmlFor="previewImg" className="label-upload">
                                         Tải ảnh
                                         <i className="fas fa-upload"></i>
                                     </label>
@@ -481,9 +437,7 @@ class UserRedux extends Component {
 
                             <div className="col-12 mb-5">
                                 <TableManageUser
-                                    handleEditUserFromParentKey={
-                                        this.handleEditUserFromParent
-                                    }
+                                    handleEditUserFromParentKey={this.handleEditUserFromParent}
                                     action={this.state.action}
                                 />
                             </div>
@@ -509,8 +463,8 @@ const mapStateToProps = (state) => {
     return {
         language: state.app.language,
         genderRedux: state.admin.genders,
-        roleRedux: state.admin.roles,
         positionRedux: state.admin.positions,
+        roleRedux: state.admin.roles,
         isLoadingGender: state.admin.isLoadingGender,
         listUsers: state.admin.users,
     };

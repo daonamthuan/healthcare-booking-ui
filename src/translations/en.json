@@ -59,8 +59,9 @@
     },
 
     "homepage": {
-        "outstanding-doctor": "Lastweek featured doctor",
-        "more-info": "More info"
+        "outstanding-doctor": "Lastweek's featured doctor",
+        "more-info": "More info",
+        "popular-specialty": "Popular specialty"
     },
 
     "manage-schedule": {
