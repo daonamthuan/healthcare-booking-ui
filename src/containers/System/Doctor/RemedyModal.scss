@@ -1,0 +1,21 @@
+.remedy-modal-container {
+    width: 600px;
+
+    button {
+        border: none;
+        outline: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        min-width: 80px;
+    }
+
+    .btn-remedy-cancel {
+        background-color: rgb(243, 74, 52);
+        color: #fff;
+    }
+
+    .btn-remedy-confirm {
+        background-color: #337ab7;
+        color: #fff;
+    }
+}

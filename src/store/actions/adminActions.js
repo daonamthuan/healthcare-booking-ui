@@ -8,6 +8,8 @@ import {
     getTopDoctorHomeService,
     getAllDoctors,
     saveDetailDoctorService,
+    getAllSpecialty,
+    getAllClinic,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
@@ -20,7 +22,7 @@ export const fetchGenderStart = () => {
         try {
             dispatch({ type: actionTypes.FETCH_GENDER_START }); // de fire 1 actions bat dung phai dung tu khoa dispatch de gui qua Reducer xu ly
             let res = await getAllCodeService("GENDER");
-            if (res && res.errCode == 0) {
+            if (res && res.errCode === 0) {
                 dispatch(fetchGenderSuccess(res.data)); // de fire 1 actions bat dung phai dung tu khoa dispatch
             } else {
                 dispatch(fetchGenderFailed());
@@ -45,7 +47,7 @@ export const fetchPositionStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllCodeService("POSITION");
-            if (res && res.errCode == 0) {
+            if (res && res.errCode === 0) {
                 dispatch(fetchPositionSuccess(res.data)); // de fire 1 actions bat dung phai dung tu khoa dispatch
             } else {
                 dispatch(fetchPositionFailed());
@@ -70,7 +72,7 @@ export const fetchRoleStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllCodeService("ROLE");
-            if (res && res.errCode == 0) {
+            if (res && res.errCode === 0) {
                 dispatch(fetchRoleSuccess(res.data)); // de fire 1 actions bat dung phai dung tu khoa dispatch
             } else {
                 dispatch(fetchRoleFailed());
@@ -95,7 +97,7 @@ export const createNewUser = (data) => {
     return async (dispatch, getState) => {
         try {
             let res = await createNewUserService(data);
-            if (res && res.errCode == 0) {
+            if (res && res.errCode === 0) {
                 toast.success("Create a new user successfully!");
                 dispatch(saveUserSuccess()); // de fire 1 actions bat dung phai dung tu khoa dispatch
                 dispatch(fetchAllUsersStart());
@@ -121,7 +123,7 @@ export const fetchAllUsersStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllUsers("ALL");
-            if (res && res.errCode == 0) {
+            if (res && res.errCode === 0) {
                 dispatch(fetchAllUsersSuccess(res.users.reverse())); // de fire 1 actions bat dung phai dung tu khoa dispatch
             } else {
                 toast.error("Error when fetching all users");
@@ -148,7 +150,7 @@ export const deleteAUser = (userId) => {
     return async (dispatch, getState) => {
         try {
             let res = await deleteUserService(userId);
-            if (res && res.errCode == 0) {
+            if (res && res.errCode === 0) {
                 toast.success("Delete user successfully!");
                 dispatch(deleteUserSuccess()); // de fire 1 actions bat dung phai dung tu khoa dispatch
                 dispatch(fetchAllUsersStart());
@@ -176,7 +178,7 @@ export const editAUser = (data) => {
     return async (dispatch, getState) => {
         try {
             let res = await editUserService(data);
-            if (res && res.errCode == 0) {
+            if (res && res.errCode === 0) {
                 toast.success("Update user successfully!");
                 dispatch(editUserSuccess()); // de fire 1 actions bat dung phai dung tu khoa dispatch
                 dispatch(fetchAllUsersStart());
@@ -306,18 +308,26 @@ export const getRequiredDoctorInfor = () => {
             let resPrice = await getAllCodeService("PRICE");
             let resPayment = await getAllCodeService("PAYMENT");
             let resProvince = await getAllCodeService("PROVINCE");
+            let resSpecialty = await getAllSpecialty();
+            let resClinic = await getAllClinic();
             if (
                 resPrice &&
                 resPrice.errCode === 0 &&
                 resPayment &&
                 resPayment.errCode === 0 &&
                 resProvince &&
-                resProvince.errCode === 0
+                resProvince.errCode === 0 &&
+                resSpecialty &&
+                resSpecialty.errCode === 0 &&
+                resClinic &&
+                resClinic.errCode === 0
             ) {
                 let data = {
                     resPrice: resPrice.data,
                     resPayment: resPayment.data,
                     resProvince: resProvince.data,
+                    resSpecialty: resSpecialty.data,
+                    resClinic: resClinic.data,
                 };
                 dispatch(fetchRequiredDoctorInforSuccess(data)); // de fire 1 actions bat dung phai dung tu khoa dispatch
             } else {

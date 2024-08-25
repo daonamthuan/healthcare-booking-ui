@@ -5,16 +5,14 @@
         .text-address {
             text-transform: uppercase;
             color: #333;
+            font-weight: 600;
         }
 
         .name-clinic {
             padding: 5px 0;
-            font-weight: 600;
-            color: #333;
         }
 
         .detail-address {
-            font-weight: 600;
             color: #333;
         }
     }
@@ -26,8 +24,10 @@
 
             .title-price-short {
                 margin: 10px 0 5px 0;
+                font-weight: 600;
+                text-transform: uppercase;
+
                 .price-short {
-                    font-weight: 600;
                     margin-left: 7px;
 
                     input {
@@ -50,6 +50,7 @@
         .title-price {
             margin: 10px 0 5px 0;
             text-transform: uppercase;
+            font-weight: 600;
         }
 
         .detail-infor {

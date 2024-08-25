@@ -124,9 +124,7 @@ class ManageSchedule extends Component {
         let formattedDate = new Date(currentDate).getTime();
 
         if (rangeTime && rangeTime.length > 0) {
-            let selectedTime = rangeTime.filter(
-                (item) => item.isSelected === true
-            );
+            let selectedTime = rangeTime.filter((item) => item.isSelected === true);
             if (selectedTime && selectedTime.length > 0) {
                 selectedTime.map((item) => {
                     let obj = {};
@@ -202,13 +200,9 @@ class ManageSchedule extends Component {
                                                     : "btn btn-schedule"
                                             }
                                             key={index}
-                                            onClick={() =>
-                                                this.handleClickBtnTime(item)
-                                            }
+                                            onClick={() => this.handleClickBtnTime(item)}
                                         >
-                                            {language == LANGUAGES.VI
-                                                ? item.valueVi
-                                                : item.valueEn}
+                                            {language == LANGUAGES.VI ? item.valueVi : item.valueEn}
                                         </button>
                                     );
                                 })}

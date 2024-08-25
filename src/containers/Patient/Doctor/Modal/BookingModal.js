@@ -1,17 +1,16 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import "./BookingModal.scss";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal } from "reactstrap";
 import ProfileDoctor from "../ProfileDoctor";
 import _, { first } from "lodash";
 import DatePicker from "../../../../components/Input/DatePicker";
 import * as actions from "../../../../store/actions";
-import { dateFormat, LANGUAGES } from "../../../../utils";
+import { LANGUAGES } from "../../../../utils";
 import Select from "react-select";
 import { postPatientBookAppointment } from "../../../../services/userService";
 import { toast } from "react-toastify";
-import { lang } from "moment";
 import moment from "moment";
 
 class BookingModal extends Component {
@@ -135,7 +134,8 @@ class BookingModal extends Component {
 
     handleConfirmBooking = async () => {
         console.log("handle confirm booking: ", this.state);
-        let date = new Date(this.state.birthday).getTime(); // convert to Timestamp Unix String
+        // convert to Timestamp Unix String
+        // let date = new Date(this.state.birthday).getTime();
         let timeString = this.buildTimeBooking(this.props.dataTime);
         let doctorName = this.buildDoctorName(this.props.dataTime);
 
@@ -145,7 +145,7 @@ class BookingModal extends Component {
             email: this.state.email,
             address: this.state.address,
             reason: this.state.reason,
-            date: date,
+            date: this.props.dataTime.date,
             doctorId: this.state.doctorId,
             selectedGender: this.state.selectedGender.value,
             timeType: this.state.timeType,
@@ -165,13 +165,9 @@ class BookingModal extends Component {
     render() {
         let { isOpenModal, closeBookingClose, dataTime } = this.props;
         let doctorId = dataTime && !_.isEmpty(dataTime) ? dataTime.doctorId : "";
+        console.log("Check props booking modal: ", this.props);
         return (
-            <Modal
-                isOpen={isOpenModal}
-                className="booking-modal-container"
-                centered
-                backdrop={true}
-            >
+            <Modal isOpen={isOpenModal} className="booking-modal-container" backdrop={true}>
                 <div className="booking-modal-content">
                     <div className="booking-modal-header">
                         <span className="left">
@@ -187,6 +183,8 @@ class BookingModal extends Component {
                                 doctorId={doctorId}
                                 isShowDescriptionDoctor={false}
                                 dataTime={dataTime}
+                                isShowPrice={true}
+                                isShowLinkDetail={false}
                             />
                         </div>
                         <div className="row">
